@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        div#myDiv p {
+            /* background-color: bisque; */
+        }
+
+        div#yetAnotherDiv li:nth-child(even) {
+             background-color: yellow; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Playing with jQuery</h1>
+
+    <div id="myDiv">
+        <p>Inside my div</p>
+        <p>Inside my div</p>
+        <p>Inside my div</p>
+        <p>Inside my div</p>
+    </div>
+
+    <div id="yetAnotherDiv">
+        <ul>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+        </ul>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Number each <p> inside #myDiv
+            let counter = 0;
+            $("#myDiv p").each(function () {
+                counter++;
+                $(this).prepend(counter + '] ');
+            });
+
+            // Hide all list items
+            $("#yetAnotherDiv li").hide();
+
+            // Fade in the entire div, then slide each <li> down one by one
+            $("#yetAnotherDiv")
+                .hide()
+                .fadeIn(2000, function () {
+                    $("#yetAnotherDiv li").each(function (index) {
+                        $(this).delay(index * 300).slideDown(500);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>

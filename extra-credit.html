@@ -94,21 +94,30 @@
   </main>
   <script src="js/main.js"></script>
   <script>
-	$("document").ready(function(){
-		$('#dateForm').submit(function(e){//handle form submission event
-            e.preventDefault();//stop default submission
-			var datetext = $('input[name=dateField]').val();//grab data from textbox
-			var formDate = new Date(datetext);//create a date from form input
-			var today = new Date();
-			
-			if(formDate > today)
-			{
-				alert(datetext + " is in the future!");
-			}else{
-				alert(datetext + " is in the past!");
-			}
-		});
-	});
+    $('#dateForm').submit(function(e) {
+    e.preventDefault();
+
+    let datetext = $('#dateField').val();
+    let date = new Date(datetext);
+    let month = date.getMonth() + 1; // 
+    let day = date.getDate();
+    let season;
+
+    if (month === 12 || month === 1 || month === 2) {
+        season = "winter";
+    } else if (month >= 3 && month <= 5) {
+        season = "spring";
+    } else if (month >= 6 && month <= 8) {
+        season = "summer";
+    } else {
+        season = "fall";
+    }
+
+    $(`.seasons a[href="${season.charAt(0).toUpperCase() + season.slice(1)}"]`).click();
+    });
+
     </script>
+    <script src="js/start-here.js"></script>
+
   </body>
 </html>
