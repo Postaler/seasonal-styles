@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-     <title>Seasonal Styles</title>
+     <title>Extra - Credit, Seasonal Styles</title>
   <meta charset="utf-8" />
   <meta name="robots" content="noindex,nofollow" />
   <meta name="viewport" content="width=device-width" />
@@ -55,6 +55,14 @@
    <main class="wrapper">
     <header><h3>Outfitter for All Seasons!</h3></header>
     <p>
+        <form id="dateForm">
+        <label for="dateField">
+            Input Date:<input type="text" name="dateField" id="dateField" />
+        </label>
+            <input type="submit" value="submit" />
+        </form>
+     </p>
+    <p>
     The colors of the seasonal images are as follows:
         <ul class="colors">
             <li>Spring: <b>#2B7129</b></li>
@@ -85,5 +93,31 @@
     </footer>
   </main>
   <script src="js/main.js"></script>
+  <script>
+    $('#dateForm').submit(function(e) {
+    e.preventDefault();
+
+    let datetext = $('#dateField').val();
+    let date = new Date(datetext);
+    let month = date.getMonth() + 1; // 
+    let day = date.getDate();
+    let season;
+
+    if (month === 12 || month === 1 || month === 2) {
+        season = "winter";
+    } else if (month >= 3 && month <= 5) {
+        season = "spring";
+    } else if (month >= 6 && month <= 8) {
+        season = "summer";
+    } else {
+        season = "fall";
+    }
+
+    $(`.seasons a[href="${season.charAt(0).toUpperCase() + season.slice(1)}"]`).click();
+    });
+
+    </script>
+    <script src="js/start-here.js"></script>
+
   </body>
 </html>
